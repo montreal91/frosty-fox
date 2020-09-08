@@ -10,4 +10,5 @@
     </bean>
 
     <bean name="ff-greeting-controller" class="auth.GreetingController" />
+    <bean name="ff-message-controller" class="hello.MessageController" />
 </beans>

@@ -1,0 +1,7 @@
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/orm/hbm">
+  <class name="hello.Message" table="MESSAGES">
+    <id name="id" column="ID"><generator class="increment"/></id>
+    <property name="text" column="TEXT"/>
+    <many-to-one name="nextMessage" cascade="all" column="next_message_id"/>
+  </class>
+</hibernate-mapping>

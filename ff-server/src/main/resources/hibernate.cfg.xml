@@ -1,0 +1,14 @@
+<hibernate-configuration xmlns="http://www.hibernate.org/xsd/orm/cfg">
+  <session-factory>
+    <property name="connection.url">jdbc:sqlserver://localhost:1433;databaseName=FoxDev</property>
+    <property name="connection.driver_class">com.microsoft.sqlserver.jdbc.SQLServerDriver</property>
+    <property name="connection.username">me</property>
+    <property name="connection.password">me</property>
+    <property name="connection.pool_size">1</property>
+    <property name="current_session_context_class">thread</property>
+    <property name="show_sql">true</property>
+    <property name="dialect">org.hibernate.dialect.SQLServerDialect</property>
+
+    <mapping resource="mappings/Message.hbm.xml"/>
+  </session-factory>
+</hibernate-configuration>
