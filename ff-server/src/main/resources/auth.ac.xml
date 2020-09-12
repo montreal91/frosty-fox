@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd"
+>
+  <bean name="ff-jwt-token-util" class="auth.JwtTokenUtil">
+    <constructor-arg name="secret" value="teh secret" />
+  </bean>
+  <bean name="ff-jwt-user-detail-service" class="auth.JwtUserDetailService" />
+  <bean id="ff-greeting-provider" class="auth.FoxAuthProvider" />
+
+  <bean id="ff-authentication-manager" class="org.springframework.security.authentication.ProviderManager">
+    <constructor-arg>
+      <list>
+        <ref bean="ff-greeting-provider" />
+      </list>
+    </constructor-arg>
+  </bean>
+
+  <bean name="ff-jwt-authentication-entry-point" class="auth.JwtAuthenticationEntryPoint" />
+  <bean name="ff-jwt-request-filter" class="auth.JwtRequestFilter" >
+    <constructor-arg name="jwtUserDetailService" ref="ff-jwt-user-detail-service"/>
+    <constructor-arg name="jwtTokenUtil" ref="ff-jwt-token-util"/>
+  </bean>
+  <bean name="ff-web-security-auth" class="auth.WebSecurityConfig" >
+    <constructor-arg name="jwtAuthenticationEntryPoint" ref="ff-jwt-authentication-entry-point" />
+    <constructor-arg name="jwtUserDetailsService" ref="ff-jwt-user-detail-service" />
+    <constructor-arg name="jwtRequestFilter" ref="ff-jwt-request-filter" />
+  </bean>
+  <bean name="ff-auth-controller" class="auth.JwtAuthController">
+    <constructor-arg name="authenticationManager" ref="ff-authentication-manager" />
+    <constructor-arg name="jwtTokenUtil" ref="ff-jwt-token-util" />
+    <constructor-arg name="jwtUserDetailService" ref="ff-jwt-user-detail-service" />
+  </bean>
+</beans>

@@ -1,4 +1,4 @@
-package auth;
+package greeting;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,7 +12,7 @@ public class GreetingController {
   private final AtomicLong counter = new AtomicLong();
 
   @GetMapping("/greeting/")
-  public auth.Greeting greeting(@RequestParam(value="name", defaultValue = "Home") String name) {
-    return new auth.Greeting(counter.incrementAndGet(), String.format(TEMPLATE, name));
+  public greeting.Greeting greeting(@RequestParam(value="name", defaultValue = "Home") String name) {
+    return new greeting.Greeting(counter.incrementAndGet(), String.format(TEMPLATE, name));
   }
 }
