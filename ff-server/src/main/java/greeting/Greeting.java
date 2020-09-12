@@ -1,4 +1,4 @@
-package auth;
+package greeting;
 
 public class Greeting {
   private final long id;

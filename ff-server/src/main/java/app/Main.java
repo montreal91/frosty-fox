@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 
 
-@ImportResource(locations = {"classpath:/web-controllers.ac.xml"})
+@ImportResource(locations = {"classpath:master.ac.xml"})
 @EnableAutoConfiguration(
     exclude = {
         DataSourceAutoConfiguration.class,
